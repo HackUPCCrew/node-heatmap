@@ -33,10 +33,10 @@ app.get('/:year', handleMongoRequest);
 function handleMongoRequest(req, res) {
   MongoClient.connect(mongoEndPoint, function(err, db) {
     console.log("Connected correctly to server");
-    
+
     const currentYear = new Date().getFullYear();
     const requestedYear = Number(req.params.year) || currentYear;
-    
+
     var collection = db.collection('crimedata');
 
     collection.find({
@@ -45,10 +45,10 @@ function handleMongoRequest(req, res) {
           $lt: new Date(""+(requestedYear+1)+"-01-01T00:00:00.000Z")
       }
     }).toArray((err,docs) => {
-      console.log(err);
+      if (err) {
+        console.log(err);
+      }
       console.log(docs);
-
-      console.log(docs)
 
       const crimes = R.map((c) => {
         const date = new Date(c.Dates);
