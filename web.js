@@ -41,8 +41,8 @@ function handleMongoRequest(req, res) {
 
     collection.find({
       Dates: {
-          $gte: new Date(""+requestedYear+"-01-01T00:00:00.000Z"),
-          $lt: new Date(""+(requestedYear+1)+"-01-01T00:00:00.000Z")
+          $gte: ""+requestedYear+"-01-01T00:00:00.000Z",
+          $lt: ""+(requestedYear+1)+"-01-01T00:00:00.000Z"
       }
     }).toArray((err,docs) => {
       if (err) {
