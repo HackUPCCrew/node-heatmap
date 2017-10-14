@@ -9,7 +9,7 @@ const R = require('ramda');
 //const pgUrl = process.env.DATABASE_URL;
 //const pgOptions = R.merge(parse(pgUrl), {ssl: true});
 
-const mongoEndPoint = "mongodb://user:user@ds119395.mlab.com:19395/crimedata"
+const mongoEndPoint = "mongodb://user:user@172.31.39.217:8080/crimedata"
 const MongoClient = require('mongodb').MongoClient
 
 //const pool = new pg.Pool(pgOptions);

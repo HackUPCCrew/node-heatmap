@@ -545,6 +545,8 @@
     this.showMarkers = true;
     this.markerInfoWindow = new google.maps.InfoWindow();
 
+    if(!data || data.length === 0) return;
+
     //figure out the date range
     this.dateRange = {start: data[0][3], end: data[data.length-1][3]};
     this.dayRange = Math.ceil((this.dateRange.end - this.dateRange.start) / DAY_IN_MILLI);
