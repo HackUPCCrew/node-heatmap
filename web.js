@@ -26,7 +26,7 @@ app.configure(function(){
   app.use(express.logger());
 });
 
-const crimeTypes = {'THEFT FROM VEHICLE':0, 'THEFT OF VEHICLE': 1, 'BREAK AND ENTER':2, 'ASSAULT': 3, 'ROBBERY': 4};
+const dayVals = {'Monday':0, 'Tuesday': 1, 'Wednesday':2, 'Thursday': 3, 'Friday': 4, 'Saturday': 5, 'Sunday': 6 };
 app.get('/', handleMongoRequest);
 app.get('/:year', handleMongoRequest);
 
@@ -52,7 +52,7 @@ function handleMongoRequest(req, res) {
 
       const crimes = R.map((c) => {
         const date = new Date(c.Dates);
-        return [Number(c.Y), Number(c.X), 0, date.getMonth(), date.getDate()];
+        return [Number(c.Y), Number(c.X), dayVals[c.DayOfWeek], date.getMonth(), date.getDate()];
       }, docs);
 
       const years = R.prepend(2013, R.range(2017, currentYear+1));
